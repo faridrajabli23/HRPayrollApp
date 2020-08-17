@@ -1,0 +1,109 @@
+﻿@using PayrollApp.Areas.HRPayroll.Models.ViewModels.DepartmentHeadModels
+@model BonusPenaltyAddModel
+<div class="main-menu">
+    <header class="header">
+        <a href="@Url.Action("EmployeeIndex","DepartmentHead")" class="logo">Payroll</a>
+        <button type="button" class="button-close fa fa-times js__menu_close"></button>
+    </header>
+    <div class="content">
+        <div class="navigation">
+            <ul class="menu js__accordion">
+                <li class="current">
+                    <a class="waves-effect" href="@Url.Action("EmployeeIndex","DepartmentHead")"><i class="menu-icon fas fa-users"></i><span>Employee</span></a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-navbar">
+    <div class="pull-left">
+        <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+        <h1 class="page-title">Department</h1>
+    </div>
+    <div class="pull-right">
+        <div class="ico-item">
+            <a href="#" class="ico-item fa fa-search js__toggle_open" data-target="#searchform-header"></a>
+            <div id="searchform-header" class="searchform js__toggle userSearchForm"><input type="search" placeholder="Search..." class="input-search" id="userSearch"><button class="fa fa-search button-search" type="button"></button></div>
+        </div>
+        <div class="ico-item"><label>Department</label></div>
+        <div class="ico-item"><a href="@Url.Action("Signout","Account")"><p style="font-size:smaller">Log Out  <i class="fas fa-sign-out-alt"></i></p></a></div>
+    </div>
+</div>
+<div id="wrapper">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                <div class="box-content bordered primary margin-bottom-20">
+                    <div class="profile-avatar">
+                        <img src="~/Admin/uploads/@Model.Employee.Photo" alt="">
+                        <h3><strong>@Model.Employee.Name @Model.Employee.Surname</strong></h3>
+                        <h4>@Model.Employee.Education</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-xs-12">
+                <table id="example" class="display nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Bonus or penalty</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Reason</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.BonusPenalties)
+                        {
+                            <tr>
+                                <td>@item.BonusOrPenalty</td>
+                                <td>@item.Amount</td>
+                                <td>@item.Date</td>
+                                <td>@item.Reason</td>
+                                <td><a style="display:inline-block" href="@Url.Action("BonusPenaltyDelete","DepartmentHead",new { id = item.Id})"><i class="far fa-trash-alt"></i></a> </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-xs-12">
+                <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <input asp-for="@Model.EmployeeId" style="visibility:hidden" value="@Model.Employee.Id" class="form-control" type="text" />
+                    <div class="form-group">
+                        <label>Bonus or Penalty</label>
+                        <select class="form-control" id="department" asp-for="@Model.BonusOrPenalty">
+                            <option>Bonus</option>
+                            <option>Penalty</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <input asp-for="@Model.Amount" class="form-control" type="number" />
+                        <span asp-validation-for="@Model.Amount" class="text-danger" style="font-size:small"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Reason</label>
+                        <input asp-for="@Model.Reason" class="form-control" type="text" />
+                        <span asp-validation-for="@Model.Reason" class="text-danger" style="font-size:small"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input asp-for="@Model.Date" class="form-control" type="date" />
+                        <span asp-validation-for="@Model.Date" class="text-danger" style="font-size:small"></span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-info" type="submit">Add</button>
+                        <a class="btn btn-warning" href="@Url.Action("EmployeeIndex","PayrollSpecialist")">Return to index</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

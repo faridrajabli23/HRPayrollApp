@@ -1,0 +1,101 @@
+﻿@model WorkPlaceEdit
+
+
+<div class="main-menu">
+    <header class="header">
+        <a href="@Url.Action("Index","Employee")" class="logo">Payroll</a>
+        <button type="button" class="button-close fa fa-times js__menu_close"></button>
+    </header>
+    <div class="content">
+        <div class="navigation">
+            <ul class="menu js__accordion">
+                <li>
+                    <a class="waves-effect" href="@Url.Action("Index","Employee")"><i class="menu-icon fas fa-users"></i><span>Employee</span></a>
+                </li>
+                <li class="current">
+                    <a class="waves-effect" href="@Url.Action("WorkPlaceIndex","Employee")"><i class="menu-icon fas fa-list"></i><span>Work Places</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("OldWorkIndex","Employee")"><i class="menu-icon fas fa-address-card"></i><span>Old Work Places</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("AbsentTable","Employee")"><i class="menu-icon fas fa-clipboard"></i><span>Absent table</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-navbar">
+    <div class="pull-left">
+        <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+        <h1 class="page-title">Work place edit</h1>
+    </div>
+    <div class="pull-right">
+        <div class="ico-item">
+            <a href="#" class="ico-item fa fa-search js__toggle_open" data-target="#searchform-header"></a>
+            <div id="searchform-header" class="searchform js__toggle employeeSearchForm"><input type="search" placeholder="Search..." class="input-search" id="employeeSearch"><button onclick="asd()" class="fa fa-search button-search" type="button"></button></div>
+        </div>
+        <div class="ico-item"><label>HR</label></div>
+        <div class="ico-item"><a href="@Url.Action("Signout","Account")"><p style="font-size:smaller">Log Out  <i class="fas fa-sign-out-alt"></i></p></a></div>
+    </div>
+</div>
+<div id="wrapper">
+    <div class="main-content">
+        <div>
+            <div class="container row">
+                <form method="post" class="col-lg-6 col-xs-12">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <input asp-for="Id" style="visibility:hidden" value="@Model.Id" />
+                    <input asp-for="EmployeeId" style="visibility:hidden" value="@Model.EmployeeId" />
+                    <div class="form-group">
+                        <label>Department</label>
+                        <select class="form-control" id="departments">
+                            @foreach (var depart in Model.Departments)
+                            {
+                                <option value="@depart.Id">@depart.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span class="companies_error_message"></span>
+                        <label>Company</label>
+                        <select class="form-control" id="companies">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span class="branch_error_message"></span>
+                        <label>Branch</label>
+                        <select class="form-control" id="branch">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span class="position_error_message"></span>
+                        <label>Position</label>
+                        <select asp-for="PositionId" class="form-control" id="position">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span class="salary_error_message"></span>
+                        <label>Salary</label>
+                        <select class="form-control" id="salary">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OldWorkEndDate">Old Position End Date</label>
+                        <input class="form-control" asp-for="OldWorkEndDate" type="date" />
+                        <span asp-validation-for="OldWorkEndDate" class="text-danger" style="font-size:small"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StartDate">New Position Start Date</label>
+                        <input class="form-control" asp-for="StartDate" value="@Model.StartDate" type="date" />
+                        <span asp-validation-for="StartDate" class="text-danger" style="font-size:small"></span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-info" type="submit">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

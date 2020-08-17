@@ -1,0 +1,155 @@
+﻿@model WorkPlaceDetails
+<div class="main-menu">
+    <header class="header">
+        <a href="@Url.Action("Index","Employee")" class="logo">Payroll</a>
+        <button type="button" class="button-close fa fa-times js__menu_close"></button>
+    </header>
+    <div class="content">
+        <div class="navigation">
+            <ul class="menu js__accordion">
+                <li>
+                    <a class="waves-effect" href="@Url.Action("Index","Employee")"><i class="menu-icon fas fa-users"></i><span>Employee</span></a>
+                </li>
+                <li class="current">
+                    <a class="waves-effect" href="@Url.Action("WorkPlaceIndex","Employee")"><i class="menu-icon fas fa-list"></i><span>Work Places</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("OldWorkIndex","Employee")"><i class="menu-icon fas fa-address-card"></i><span>Old Work Places</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("AbsentTable","Employee")"><i class="menu-icon fas fa-clipboard"></i><span>Absent table</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-navbar">
+    <div class="pull-left">
+        <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+        <h1 class="page-title">Work</h1>
+    </div>
+    <div class="pull-right">
+        <div class="ico-item">
+            <a href="#" class="ico-item fa fa-search js__toggle_open" data-target="#searchform-header"></a>
+            <div id="searchform-header" class="searchform js__toggle employeeSearchForm"><input type="search" placeholder="Search..." class="input-search" id="employeeSearch"><button onclick="asd()" class="fa fa-search button-search" type="button"></button></div>
+        </div>
+        <div class="ico-item"><label>HR</label></div>
+        <div class="ico-item"><a href="@Url.Action("Signout","Account")"><p style="font-size:smaller">Log Out  <i class="fas fa-sign-out-alt"></i></p></a></div>
+    </div>
+</div>
+<div id="wrapper">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                <div class="box-content bordered primary margin-bottom-20">
+                    <div class="profile-avatar">
+                        <img src="~/Admin/uploads/@Model.Photo" alt="">
+                        <h3><strong>@Model.Name @Model.Surname</strong></h3>
+                        <h4>@Model.Education</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-md-9 col-xs-12">
+                <div class="box-content card">
+                    <h4 class="box-title"><i class="fa fa-user ico"></i>About</h4>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Name:</label></div>
+                                    <div class="col-xs-7">@Model.Name</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Surname:</label></div>
+                                    <div class="col-xs-7">@Model.Surname</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Education:</label></div>
+                                    <div class="col-xs-7">@Model.Education</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Address</label></div>
+                                    <div class="col-xs-7">@Model.Address</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Marital Status:</label></div>
+                                    <div class="col-xs-7">@Model.MaritalStatus</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Gender:</label></div>
+                                    <div class="col-xs-7">@Model.Gender</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Birthday:</label></div>
+                                    <div class="col-xs-7">@Model.Birthday</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Department:</label></div>
+                                    <div class="col-xs-7">@Model.Department</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Comapany:</label></div>
+                                    <div class="col-xs-7">@Model.Company</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Position:</label></div>
+                                    <div class="col-xs-7">@Model.Position</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-xs-5"><label>Salary:</label></div>
+                                    <div class="col-xs-7">@Model.Salary</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-12">
+                <h3>Old Work  Place</h3>
+                <table id="oldWorkPlaces" class="display nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Company name</th>
+                            <th>Entry date</th>
+                            <th>Resignation date</th>
+                            <th>Resignation reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OldWorkPlaces)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.EntryDate</td>
+                                <td>@item.EndDate</td>
+                                <td>@item.EndReason</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

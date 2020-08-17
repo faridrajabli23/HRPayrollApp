@@ -1,0 +1,25 @@
+﻿@model  PayrollApp.Models.LoginModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+<div class="container">
+    <form method="post">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input type="email" class="form-control" id="email" name="Email" value="" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Password</label>
+            <input type="password" class="form-control" id="password" name="Password" value="" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-warning">Login</button>
+        </div>
+    </form>
+</div>
+

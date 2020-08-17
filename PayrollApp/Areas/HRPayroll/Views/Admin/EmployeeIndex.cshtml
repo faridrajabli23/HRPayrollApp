@@ -1,0 +1,90 @@
+﻿@model List<Employee>
+<div class="main-menu">
+    <header class="header">
+        <a href="@Url.Action("UserIndex","Admin")" class="logo">Payroll</a>
+        <button type="button" class="button-close fa fa-times js__menu_close"></button>
+    </header>
+    <div class="content">
+        <div class="navigation">
+            <ul class="menu js__accordion">
+                <li>
+                    <a class="waves-effect" href="@Url.Action("UserIndex","Admin")"><i class="menu-icon fas fa-users"></i><span>User</span></a>
+                </li>
+                <li class="current">
+                    <a class="waves-effect" href="@Url.Action("EmployeeIndex","Admin")"><i class="menu-icon far fa-user"></i><span>Employee</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("RoleIndex","Admin")"><i class="menu-icon fas fa-address-book"></i><span>Role</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("Department","Admin")"><i class="menu-icon fas fa-briefcase"></i></i><span>Department</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("CompanyIndex","Admin")"><i class="menu-icon fas fa-hotel"></i><span>Company</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("BranchIndex","Admin")"><i class="menu-icon fas fa-code-branch"></i><span>Branch</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("PositionIndex","Admin")"><i class="menu-icon fas fa-user-edit"></i><span>Position</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("Holiday","Admin")"><i class="menu-icon fas fa-user-clock"></i><span>Holiday</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="@Url.Action("StipulationIndex","Admin")"><i class="menu-icon fas fa-sort-amount-up-alt"></i><span>Stipulation</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-navbar">
+    <div class="pull-left">
+        <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+        <h1 class="page-title">Employees</h1>
+    </div>
+    <div class="pull-right">
+        <div class="ico-item">
+            <a href="#" class="ico-item fa fa-search js__toggle_open" data-target="#searchform-header"></a>
+            <div id="searchform-header" class="searchform js__toggle userSearchForm"><input type="search" placeholder="Search..." class="input-search" id="userSearch"><button onclick="employeeSearcher()" class="fa fa-search button-search" type="button"></button></div>
+        </div>
+        <div class="ico-item"><label>Admin</label></div>
+        <div class="ico-item"><a href="@Url.Action("Signout","Account")"><p style="font-size:smaller">Log Out  <i class="fas fa-sign-out-alt"></i></p></a></div>
+    </div>
+</div>
+<div id="wrapper">
+    <div class="main-content">
+        <div>
+            <table id="example" class="display nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Father Name</th>
+                        <th>Birthday</th>
+                        <th>Education</th>
+                        <th>Marital Status</th>
+                        <th>Gender</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Surname</td>
+                            <td>@item.Fathername</td>
+                            <td>@item.Birthday</td>
+                            <td>@item.Education</td>
+                            <td>@item.MaritalStatus</td>
+                            <td>@item.Gender</td>
+                            <td><a style="display:inline-block" href="@Url.Action("EmployeeDetails","Admin",new { id = item.Id})"><i class="far fa-edit"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

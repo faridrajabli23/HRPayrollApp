@@ -1,0 +1,73 @@
+﻿@model List<WorkPlace>
+<div class="main-menu">
+    <header class="header">
+        <a href="@Url.Action("EmployeeIndex","DepartmentHead")" class="logo">Payroll</a>
+        <button type="button" class="button-close fa fa-times js__menu_close"></button>
+    </header>
+    <div class="content">
+        <div class="navigation">
+            <ul class="menu js__accordion">
+                <li class="current">
+                    <a class="waves-effect" href="@Url.Action("EmployeeIndex","DepartmentHead")"><i class="menu-icon fas fa-users"></i><span>Employee</span></a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-navbar">
+    <div class="pull-left">
+        <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+        <h1 class="page-title">Employees</h1>
+    </div>
+    <div class="pull-right">
+        <div class="ico-item">
+            <a href="#" class="ico-item fa fa-search js__toggle_open" data-target="#searchform-header"></a>
+            <div id="searchform-header" class="searchform js__toggle userSearchForm"><input type="search" placeholder="Search..." class="input-search" id="userSearch"><button class="fa fa-search button-search" type="button"></button></div>
+        </div>
+        <div class="ico-item"><label>Department</label></div>
+        <div class="ico-item"><a href="@Url.Action("Signout","Account")"><p style="font-size:smaller">Log Out  <i class="fas fa-sign-out-alt"></i></p></a></div>
+    </div>
+</div>
+<div id="wrapper">
+    <div class="main-content">
+        <div>
+            <table id="example" class="display nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Father Name</th>
+                        <th>Department</th>
+                        <th>Company</th>
+                        <th>Position</th>
+                        <th>Education</th>
+                        <th>Marital Status</th>
+                        <th>Gender</th>
+                        <th>Bonus/Penalty</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Employee.Name</td>
+                            <td>@item.Employee.Surname</td>
+                            <td>@item.Employee.Fathername</td>
+                            <td>@item.Position.Company.Department.Name</td>
+                            <td>@item.Position.Company.Name</td>
+                            <td>@item.Position.Name</td>
+                            <td>@item.Employee.Education</td>
+                            <td>@item.Employee.MaritalStatus</td>
+                            <td>@item.Employee.Gender</td>
+                            <td><a style="display:inline-block" href="@Url.Action("BonusPenalty","DepartmentHead",new { id = item.Employee.Id})"><i class="fas fa-plus"></i></a> </td>
+                            <td><a style="display:inline-block" href="@Url.Action("EmployeeDetails","DepartmentHead",new { id = item.Employee.Id})"><i class="far fa-edit"></i></a> </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

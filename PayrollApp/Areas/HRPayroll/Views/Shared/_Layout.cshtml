@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Payroll</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Admin/styles/style.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+    @RenderBody()
+
+
+
+    <script src="https://kit.fontawesome.com/bbd76e97fd.js"></script>
+
+    <script src="~/Admin/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Admin/plugin/nprogress/nprogress.js"></script>
+    <script src="~/Admin/plugin/sweet-alert/sweetalert.min.js"></script>
+    <script src="~/Admin/plugin/waves/waves.min.js"></script>
+    <script src="~/Admin/plugin/fullscreen/jquery.fullscreen-min.js"></script>
+
+    <script src="~/Admin/scripts/jquery.min.js"></script>
+
+    <script src="~/js/JavaScript.js"></script>
+    <script src="~/js/ajax.js"></script>
+    <script src="~/Admin/scripts/main.min.js"></script>
+
+
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "scrollX": true
+                
+            });
+            $('#userInThisRole').DataTable({
+                "scrollX": true
+            });
+            $('#otherUser').DataTable({
+                "scrollX": true
+            });
+            $('#oldWorkPlaces').DataTable({
+                "scrollX": true,
+                "searching": false,
+                "paging": false
+            });
+            $('#old').DataTable();
+        });
+
+    </script>
+</body>
+</html>
